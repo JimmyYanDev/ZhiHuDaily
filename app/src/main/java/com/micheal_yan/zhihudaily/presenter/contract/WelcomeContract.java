@@ -2,7 +2,7 @@ package com.micheal_yan.zhihudaily.presenter.contract;
 
 import com.micheal_yan.zhihudaily.base.BasePresenter;
 import com.micheal_yan.zhihudaily.base.BaseView;
-import com.micheal_yan.zhihudaily.model.bean.GankItemBean;
+import com.micheal_yan.zhihudaily.model.bean.WelcomeBean;
 
 /**
  * Created by micheal-yan on 2017/2/19.
@@ -10,14 +10,14 @@ import com.micheal_yan.zhihudaily.model.bean.GankItemBean;
 
 public interface WelcomeContract {
 
-    interface View extends BaseView<Presenter> {
+    interface View extends BaseView {
 
-        void showContent(GankItemBean gankItemBean);
+        void showContent(WelcomeBean welcomeBean);
 
         void jumpToMain();
     }
 
-    interface Presenter extends BasePresenter {
+    interface Presenter extends BasePresenter<View> {
 
         void getWelcomeData();
     }

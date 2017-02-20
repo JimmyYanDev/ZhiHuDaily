@@ -21,6 +21,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends Activity imp
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(getLayout());
 
         // 将Activity添加到集合中进行集中管理
         App.getInstance().addActivity(this);
@@ -29,6 +30,9 @@ public abstract class BaseActivity<T extends BasePresenter> extends Activity imp
         mContext = this;
         // 进行数据和事件的初始化操作
         initEventAndData();
+        if (mPresenter != null) {
+            mPresenter.attachView(this);
+        }
     }
 
     @Override
@@ -37,7 +41,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends Activity imp
 
         // 去除对Presenter的引用，防止内存泄漏
         if (mPresenter != null) {
-            mPresenter = null;
+            mPresenter.detachView();
         }
         // 取消绑定ButterKnife
         mUnbinder.unbind();
@@ -45,12 +49,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends Activity imp
         App.getInstance().removeActivity(this);
     }
 
-    @Override
-    public void setPresenter(BasePresenter presenter) {
-        if (presenter != null) {
-            mPresenter = (T) presenter;
-        }
-    }
-
     protected abstract void initEventAndData();
+    protected abstract int getLayout();
 }

@@ -7,14 +7,14 @@ package com.micheal_yan.zhihudaily.model.bean;
 public class WelcomeBean {
 
     private String imgUrl;
-    private String text;
+    private String who;
 
     public WelcomeBean() {
     }
 
-    public WelcomeBean(String imgUrl, String text) {
+    public WelcomeBean(String imgUrl, String who) {
         this.imgUrl = imgUrl;
-        this.text = text;
+        this.who = who;
     }
 
     public String getImgUrl() {
@@ -25,11 +25,11 @@ public class WelcomeBean {
         this.imgUrl = imgUrl;
     }
 
-    public String getText() {
-        return text;
+    public String getWho() {
+        return who;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setWho(String who) {
+        this.who = who;
     }
 }

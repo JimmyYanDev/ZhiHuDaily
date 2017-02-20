@@ -77,12 +77,5 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
         }
     }
 
-    @Override
-    public void setPresenter(BasePresenter presenter) {
-        if (presenter != null) {
-            mPresenter = (T) presenter;
-        }
-    }
-
     protected abstract void initEventAndData();
 }
