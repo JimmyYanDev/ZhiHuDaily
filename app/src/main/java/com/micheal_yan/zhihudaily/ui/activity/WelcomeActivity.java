@@ -1,8 +1,7 @@
-package com.micheal_yan.zhihudaily.ui.welcome;
+package com.micheal_yan.zhihudaily.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,7 +11,6 @@ import com.micheal_yan.zhihudaily.base.BaseActivity;
 import com.micheal_yan.zhihudaily.model.bean.WelcomeBean;
 import com.micheal_yan.zhihudaily.presenter.WelcomePresenter;
 import com.micheal_yan.zhihudaily.presenter.contract.WelcomeContract;
-import com.micheal_yan.zhihudaily.ui.main.activity.MainActivity;
 
 import butterknife.BindView;
 
@@ -21,8 +19,10 @@ import butterknife.BindView;
  */
 public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements WelcomeContract.View {
 
-    private ImageView mImageView;
-    private TextView mTextView;
+    @BindView(R.id.iv_welcome_image)
+    ImageView mImageView;
+    @BindView(R.id.tv_welcome_text)
+    TextView mTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,15 +33,12 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
     protected void initEventAndData() {
         mPresenter = new WelcomePresenter();
         mPresenter.getWelcomeData();
-
-        mImageView = (ImageView) findViewById(R.id.iv_welcome_image);
-        mTextView = (TextView) findViewById(R.id.tv_welcome_text);
     }
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         Glide.clear(mImageView);
+        super.onDestroy();
     }
 
     @Override

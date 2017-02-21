@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import"/>
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery"/>
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow"/>
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools"/>
-    </group>
+    <item android:title="版块">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_home"
+                    android:icon="@drawable/home"
+                    android:title="日报"/>
+                <item
+                    android:id="@+id/nav_theme"
+                    android:icon="@drawable/theme"
+                    android:title="主题"/>
+                <item
+                    android:id="@+id/nav_column"
+                    android:icon="@drawable/column"
+                    android:title="专栏"/>
+                <item
+                    android:id="@+id/nav_hot"
+                    android:icon="@drawable/hot"
+                    android:title="热门"/>
+            </group>
+        </menu>
+    </item>
 
-    <item android:title="Communicate">
+    <item android:title="选项">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share"/>
+                android:id="@+id/nav_setting"
+                android:icon="@drawable/setting"
+                android:title="设置"/>
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send"/>
+                android:id="@+id/nav_about"
+                android:icon="@drawable/about"
+                android:title="关于"/>
         </menu>
     </item>
 

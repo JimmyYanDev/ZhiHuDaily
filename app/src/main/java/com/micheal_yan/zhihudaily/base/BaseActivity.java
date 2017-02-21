@@ -2,6 +2,7 @@ package com.micheal_yan.zhihudaily.base;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.micheal_yan.zhihudaily.app.App;
 
@@ -12,7 +13,7 @@ import butterknife.Unbinder;
  * Created by micheal-yan on 2017/2/19.
  */
 
-public abstract class BaseActivity<T extends BasePresenter> extends Activity implements BaseView{
+public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements BaseView{
 
     protected T mPresenter;
     protected Activity mContext;
