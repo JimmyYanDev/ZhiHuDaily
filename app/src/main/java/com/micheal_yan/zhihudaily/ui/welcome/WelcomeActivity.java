@@ -2,6 +2,7 @@ package com.micheal_yan.zhihudaily.ui.welcome;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,11 +19,9 @@ import butterknife.BindView;
 /**
  * Created by micheal-yan on 2017/2/19.
  */
-public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements WelcomeContract.View{
+public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements WelcomeContract.View {
 
-    @BindView(R.id.iv_welcome_image)
     private ImageView mImageView;
-    @BindView(R.id.tv_welcome_text)
     private TextView mTextView;
 
     @Override
@@ -34,18 +33,22 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
     protected void initEventAndData() {
         mPresenter = new WelcomePresenter();
         mPresenter.getWelcomeData();
+
+        mImageView = (ImageView) findViewById(R.id.iv_welcome_image);
+        mTextView = (TextView) findViewById(R.id.tv_welcome_text);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Glide.get(this).clearMemory();
+        Glide.clear(mImageView);
     }
 
     @Override
     public void showContent(WelcomeBean welcomeBean) {
-        Glide.with(this).load(welcomeBean.getImgUrl()).error(R.drawable.panda).thumbnail(0.1f).crossFade().fitCenter().into(mImageView);
         mTextView.setText(welcomeBean.getWho());
+        Glide.with(mContext).load(welcomeBean.getImgUrl()).centerCrop().into(mImageView);
+        mImageView.animate().scaleX(1.12f).scaleY(1.12f).setDuration(2000).setStartDelay(100).start();
     }
 
     @Override

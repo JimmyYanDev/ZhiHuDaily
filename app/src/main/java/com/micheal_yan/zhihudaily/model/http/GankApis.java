@@ -16,5 +16,5 @@ public interface GankApis {
     String HOST = "http://gank.io/api/";
 
     @GET("data/福利/1/1")
-    Observable<List<GankItemBean>> getWelcomeData();
+    Observable<GankHttpResponse<List<GankItemBean>>> getWelcomeData();
 }

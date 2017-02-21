@@ -5,6 +5,7 @@ import android.util.Log;
 import com.micheal_yan.zhihudaily.model.bean.GankItemBean;
 import com.micheal_yan.zhihudaily.model.bean.WelcomeBean;
 import com.micheal_yan.zhihudaily.model.http.GankApis;
+import com.micheal_yan.zhihudaily.model.http.GankHttpResponse;
 import com.micheal_yan.zhihudaily.presenter.contract.WelcomeContract;
 
 import java.util.List;
@@ -41,19 +42,19 @@ public class WelcomePresenter implements WelcomeContract.Presenter {
                 .build();
         service = mRetrofit.create(GankApis.class);
 
-        Observable<List<GankItemBean>> observable = service.getWelcomeData();
+        Observable<GankHttpResponse<List<GankItemBean>>> observable = service.getWelcomeData();
         observable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .map(new Func1<List<GankItemBean>, WelcomeBean>() {
+                .map(new Func1<GankHttpResponse<List<GankItemBean>>, WelcomeBean>() {
 
                     @Override
-                    public WelcomeBean call(List<GankItemBean> been) {
-                        String imgUrl = been.get(0).getUrl();
-                        String who = "由" + been.get(0).getWho() + "提供";
+                    public WelcomeBean call(GankHttpResponse<List<GankItemBean>> been) {
+                        String imgUrl = been.getResults().get(0).getUrl();
+                        String who = "图片由" + been.getResults().get(0).getWho() + "提供";
                         Log.e("qmyan", imgUrl);
                         return new WelcomeBean(imgUrl, who);
                     }
                 })
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<WelcomeBean>() {
                     @Override
                     public void call(WelcomeBean welcomeBean) {
