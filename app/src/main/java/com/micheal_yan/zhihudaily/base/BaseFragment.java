@@ -35,6 +35,9 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
         super.onViewCreated(view, savedInstanceState);
         mUnbinder = ButterKnife.bind(this, view);
         initEventAndData();
+        if (mPresenter != null) {
+            mPresenter.attachView(this);
+        }
     }
 
 
@@ -48,7 +51,6 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
     @Override
     public void onDestroy() {
         super.onDestroy();
-
         if (mPresenter != null) {
             mPresenter.detachView();
         }
